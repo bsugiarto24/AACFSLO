@@ -63,7 +63,7 @@
                                     <segue destination="S2p-RI-y02" kind="modal" identifier="continue" modalTransitionStyle="flipHorizontal" id="mFH-Ih-cZn"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="6PK-7S-cnw">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="6PK-7S-cnw">
                                 <rect key="frame" x="102" y="173" width="117" height="121"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
@@ -73,11 +73,7 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Mtp-El-ZRH" secondAttribute="centerX" id="1T5-2R-zjD"/>
                             <constraint firstItem="Mtp-El-ZRH" firstAttribute="top" secondItem="y5V-Bj-YBp" secondAttribute="bottom" constant="8" id="1w8-Yf-6GZ"/>
-                            <constraint firstItem="6PK-7S-cnw" firstAttribute="leading" secondItem="Ht3-Xd-fEm" secondAttribute="leadingMargin" constant="82" id="8f0-Cl-Pmq"/>
-                            <constraint firstItem="6PK-7S-cnw" firstAttribute="top" secondItem="LIJ-W0-YDI" secondAttribute="bottom" constant="109" id="LtZ-Y6-33M"/>
                             <constraint firstAttribute="centerX" secondItem="y5V-Bj-YBp" secondAttribute="centerX" id="ShV-cK-Sf1"/>
-                            <constraint firstItem="0Iu-tW-O04" firstAttribute="top" secondItem="6PK-7S-cnw" secondAttribute="bottom" constant="274" id="XMV-EW-1eb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6PK-7S-cnw" secondAttribute="trailing" constant="81" id="kS3-j9-DId"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -425,7 +421,7 @@
         <scene sceneID="5y4-mq-4B1">
             <objects>
                 <tableViewController id="USj-7d-zAw" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="efx-vZ-K7f">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="efx-vZ-K7f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -74,6 +74,7 @@
     [self _postOpenGraphAction];
 }
 
+//not used
 - (FBSDKShareOpenGraphContent *)contentForSharing
 {
     NSString *previewPropertyName = @"fb_sample_scrumps:meal";
@@ -150,44 +151,20 @@
                                              };
                      Firebase *post2Ref = [userRef childByAutoId];
                      [post2Ref setValue: post2];
+                     
+                     NSDictionary *last = @{_friends[i]: @{@"Date": string}};
+                     [ref2 setValue:last];
                  }
-                 
-                 NSDictionary *last = @{result[@"name"]: @{@"Date": string}};
-                 [ref2 setValue:last];
-                 
              }
          }];
     }
     
     
     [[[UIAlertView alloc] initWithTitle:nil message:@"Thanks for sharing!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-    
 
-    //sending call to fb.
-    /*
-     
-    NSString *const publish_actions = @"publish_actions";
-    if ([[FBSDKAccessToken currentAccessToken] hasGranted:publish_actions]) {
-        [self.delegate shareUtilityWillShare:self];
-        [_shareAPI share];
-    } else {
-        [[[FBSDKLoginManager alloc] init]
-         logInWithPublishPermissions:@[publish_actions]
-         fromViewController:nil
-         handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-             if ([result.grantedPermissions containsObject:publish_actions]) {
-                 [self.delegate shareUtilityWillShare:self];
-                 [_shareAPI share];
-             } else {
-                 // This would be a nice place to tell the user why publishing
-                 // is valuable.
-                 [_delegate shareUtility:self didFailWithError:nil];
-             }
-         }];
-    }*/
 }
 
-
+//not used
 - (NSString *)_existingMealURLWithTitle:(NSString *)title
 {
     // Give it a URL of sample data that contains the object's name, title, description, and body.
