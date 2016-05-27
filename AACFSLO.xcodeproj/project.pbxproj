@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4266E1351CF83656002F6B60 /* Readme.md in Sources */ = {isa = PBXBuildFile; fileRef = 4266E1341CF83656002F6B60 /* Readme.md */; };
 		42D0B4EF1CF51F7E006CE86A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B4EE1CF51F7E006CE86A /* main.m */; };
 		42D0B4F21CF51F7E006CE86A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B4F11CF51F7E006CE86A /* AppDelegate.m */; };
 		42D0B4FA1CF51F7E006CE86A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D0B4F91CF51F7E006CE86A /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4266E1341CF83656002F6B60 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		42D0B4EA1CF51F7E006CE86A /* AACFSLO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AACFSLO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D0B4EE1CF51F7E006CE86A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		42D0B4F01CF51F7E006CE86A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		42D0B4E11CF51F7E006CE86A = {
 			isa = PBXGroup;
 			children = (
+				4266E1341CF83656002F6B60 /* Readme.md */,
 				42D0B5601CF52083006CE86A /* UIKit.framework */,
 				42D0B55E1CF5206B006CE86A /* Foundation.framework */,
 				42D0B55C1CF52061006CE86A /* CoreLocation.framework */,
@@ -406,6 +409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4266E1351CF83656002F6B60 /* Readme.md in Sources */,
 				42D0B5421CF51FBD006CE86A /* SCPickerViewController.m in Sources */,
 				42D0B5401CF51FBD006CE86A /* SCLoginViewController.m in Sources */,
 				42D0B5321CF51FAF006CE86A /* SCAppDelegate.m in Sources */,
