@@ -84,12 +84,12 @@ class MoiListController: UITableViewController {
         if editingStyle == .Delete {
             let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/users")
             let ref2 = ref.childByAppendingPath(user)
-            let ref3 = ref2.childByAppendingPath(keys[indexPath.row])
+            let ref3 = ref2.childByAppendingPath(keys[keys.count - indexPath.row - 1])
             print(ref3)
             
             ref3.removeValue()
-            keys.removeAtIndex(indexPath.row)
-            data.removeAtIndex(indexPath.row)
+            keys.removeAtIndex(keys.count - indexPath.row - 1)
+            data.removeAtIndex(data.count - indexPath.row - 1)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
