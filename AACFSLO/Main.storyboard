@@ -115,10 +115,10 @@
                                 <color key="textColor" red="0.93471401929999998" green="0.8139893413" blue="0.52944350240000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OOl-1U-AQf">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OOl-1U-AQf">
                                 <rect key="frame" x="119" y="397" width="82" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Announce">
+                                <state key="normal" title="Submit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -168,12 +168,6 @@
                         <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title="Back" id="7dy-OF-B8j"/>
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="lmM-q3-zax"/>
-                        <view key="titleView" contentMode="scaleToFill" id="fnW-Rr-dGV">
-                            <rect key="frame" x="106.5" y="6" width="107" height="32"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <color key="tintColor" red="0.20200252360000001" green="0.81109011799999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        </view>
                         <barButtonItem key="rightBarButtonItem" id="7kt-0r-Bdg">
                             <button key="customView" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="d1G-Py-yVR" customClass="SCProfilePictureButton">
                                 <rect key="frame" x="271" y="5" width="33" height="33"/>
@@ -335,7 +329,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recCell" id="4eS-2V-TMb">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recCell" id="4eS-2V-TMb">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4eS-2V-TMb" id="C3v-0k-Vav">

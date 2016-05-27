@@ -130,7 +130,7 @@ class DisplayPrayerController: UITableViewController {
             let alertView = UIAlertView();
             alertView.addButtonWithTitle("Ok");
             alertView.title = "Invalid Access";
-            alertView.message = "Cannot Delete Someone Else's Prayer";
+            alertView.message = "Please Toggle to Delete Prayer";
             alertView.show();
         }
         

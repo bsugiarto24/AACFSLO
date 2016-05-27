@@ -88,16 +88,24 @@ class PrayerRequestController: UIViewController {
                     let post1 = ["author": user, "prayer": message,"date": time]
                     let post1Ref = prayerRef.childByAutoId()
                     
-                    if(message != "" || message.characters.count > 120) {
-                       post1Ref.setValue(post1)
-                    }
-                    else {
+                    if(message == "" || message.characters.count > 120) {
                         //shows an alert window
                         let alertView = UIAlertView();
                         alertView.addButtonWithTitle("Ok");
                         alertView.title = "Invalid Prayer";
-                        alertView.message = "Your Prayer is Invalid";
+                        alertView.message = "Please Enter a Prayer";
                         alertView.show();
+                    }
+                    else if(message.characters.count > 120){
+                        //shows an alert window
+                        let alertView = UIAlertView();
+                        alertView.addButtonWithTitle("Ok");
+                        alertView.title = "Invalid Prayer";
+                        alertView.message = "Your Prayer is Too Long";
+                        alertView.show();
+                    }
+                    else {
+                         post1Ref.setValue(post1)
                     }
                 }
             })
