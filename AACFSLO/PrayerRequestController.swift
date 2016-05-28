@@ -84,8 +84,10 @@ class PrayerRequestController: UIViewController {
                         user = user.substringWithRange(start..<end)
                     }
                     
+                    let time2 = FirebaseServerValue.timestamp();
+                    
                     //send prayer
-                    let post1 = ["author": user, "prayer": message,"date": time]
+                    let post1 = ["author": user, "prayer": message,"date": time2]
                     let post1Ref = prayerRef.childByAutoId()
                     
                     if(message == "" || message.characters.count > 120) {

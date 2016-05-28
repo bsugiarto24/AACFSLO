@@ -45,6 +45,7 @@ class AnnouncementsController: UITableViewController {
         return data.count
     }
     
+    //displays data in reverse order (newest first)
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("announcementCell", forIndexPath: indexPath)
         cell.textLabel?.text = data[data.count - indexPath.row - 1]

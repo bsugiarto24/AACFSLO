@@ -43,7 +43,14 @@ class DisplayPrayerController: UITableViewController {
                     let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/prayers")
                     ref.queryOrderedByChild("date").observeEventType(.ChildAdded, withBlock: { snapshot in
                         if let prayer = snapshot.value["prayer"] as? String {
-                            let date = self.parseOptional(String(snapshot.value["date"]))
+                            var date = self.parseOptional(String(snapshot.value["date"]))
+                            
+                            if(!date.containsString(".")) {
+                                date = self.epochtoDate(Double(date)!)
+                            }
+                            
+                            
+                            
                             let name = self.parseOptional(String(snapshot.value["author"]))
                             print("\(snapshot.key) prayer:  \(prayer)")
                             self.self.data.append("\(prayer) \r\nby \(name) on \(date)")
@@ -80,6 +87,18 @@ class DisplayPrayerController: UITableViewController {
             return filtered.count
         }
         return data.count
+    }
+    
+    func epochtoDate(epoch : Double) ->String {
+        let foo: NSTimeInterval = epoch / 1000
+        let theDate = NSDate(timeIntervalSince1970: foo)
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day , .Month , .Year], fromDate: theDate)
+        let year =  components.year
+        let month = components.month
+        let day = components.day
+        
+        return String(year) + "." + String(month) + "." + String(day)
     }
     
     

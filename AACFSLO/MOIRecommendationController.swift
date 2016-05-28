@@ -14,7 +14,6 @@ class MOIRecommendationController: UITableViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet var recTableView: UITableView!
     var data = ["data"]
-    var data2 = ["data2"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +29,10 @@ class MOIRecommendationController: UITableViewController {
         
         let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/lastMoi")
         ref.queryOrderedByChild("Date").observeEventType(.ChildAdded, withBlock: { snapshot in
-            let date = self.parseOptional(String(snapshot.value["Date"]))
+            var date = self.parseOptional(String(snapshot.value["Date"]))
+            
+            date = self.epochtoDate(Double(date)!)
+            
             let partner = snapshot.key
             print("\(snapshot.key) - \(date)")
             self.self.data.append("\(partner)")
@@ -50,7 +52,7 @@ class MOIRecommendationController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("recCell", forIndexPath: indexPath)
-        cell.textLabel?.text = data[data.count - indexPath.row - 1]
+        cell.textLabel?.text = data[indexPath.row]
         return cell
     }
     
@@ -59,6 +61,19 @@ class MOIRecommendationController: UITableViewController {
             return str.substringWithRange(str.startIndex.advancedBy(9)..<str.endIndex.advancedBy(-1))
         }
         return str
+    }
+    
+    
+    func epochtoDate(epoch : Double) ->String {
+        let foo: NSTimeInterval = epoch / 1000
+        let theDate = NSDate(timeIntervalSince1970: foo)
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day , .Month , .Year], fromDate: theDate)
+        let year =  components.year
+        let month = components.month
+        let day = components.day
+        
+        return String(year) + "." + String(month) + "." + String(day)
     }
     
     

@@ -140,7 +140,9 @@
                  
                  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                  formatter.dateFormat = @"yyyy.M.d";
-                 NSString *string = [formatter stringFromDate:[NSDate date]];
+                 //NSString *string = [formatter stringFromDate:[NSDate date]];
+                 NSString *string = [FirebaseServerValue timestamp];
+                 
                  
                  //MOI Data and upload
                  int i;

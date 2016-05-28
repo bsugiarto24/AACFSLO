@@ -20,6 +20,7 @@ class MoiListController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //reveal view controller
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -32,16 +33,24 @@ class MoiListController: UITableViewController {
         keys.removeAtIndex(0)
         
         
-        
+        //check FB login
         if((FBSDKAccessToken.currentAccessToken()) != nil){
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
                 if (error == nil){
                     self.user = self.parseOptional(String(result["name"]))
                     let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/users")
                     let ref2 = ref.childByAppendingPath(self.parseOptional(String(result["name"])))
+                    
+                    //query user's Moi's
                     ref2.queryOrderedByChild("Date").observeEventType(.ChildAdded, withBlock: { snapshot in
                         if let partner = snapshot.value["Partner"] as? String {
-                            let date = self.parseOptional(String(snapshot.value["Date"]))
+                            var date = self.parseOptional(String(snapshot.value["Date"]))
+                            
+                            //converts epoch time to date if necessary
+                            if(!date.containsString(".")) {
+                                date = self.epochtoDate(Double(date)!)
+                            }
+                            
                             print("\(snapshot.key) prayer this:  \(partner)")
                             self.self.data.append("\(partner) on \(date)")
                             self.self.keys.append(snapshot.key)
@@ -53,7 +62,7 @@ class MoiListController: UITableViewController {
                 }
             })
         }else {
-            //shows an alert window
+            //shows an alert window if not logged in
             let alertView = UIAlertView();
             alertView.addButtonWithTitle("Ok");
             alertView.title = "You are not Logged In";
@@ -79,6 +88,19 @@ class MoiListController: UITableViewController {
         }
         return str
     }
+    
+    func epochtoDate(epoch : Double) ->String {
+        let foo: NSTimeInterval = epoch / 1000
+        let theDate = NSDate(timeIntervalSince1970: foo)
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day , .Month , .Year], fromDate: theDate)
+        let year =  components.year
+        let month = components.month
+        let day = components.day
+        
+        return String(year) + "." + String(month) + "." + String(day)
+    }
+    
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
