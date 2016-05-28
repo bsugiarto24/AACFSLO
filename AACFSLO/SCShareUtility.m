@@ -132,7 +132,7 @@
                  //append string
                  NSLog(@"fetched user:%@", result[@"name"]);
                  [user appendString: result[@"name"]];
-                 [ref2 childByAppendingPath: result[@"name"]];
+                 
                  
                  //get the users database and name of logged in user
                  Firebase *userRef = [ref childByAppendingPath: user];
@@ -152,9 +152,17 @@
                      Firebase *post2Ref = [userRef childByAutoId];
                      [post2Ref setValue: post2];
                      
-                     NSDictionary *last = @{_friends[i]: @{@"Date": string}};
-                     [ref2 setValue:last];
+                     //update lastMoi database
+                     Firebase *ref3 = [ref2 childByAppendingPath: _friends[i]];
+                     NSDictionary *last = @{@"Date": string};
+                     NSLog(@"ref2:%@", ref3);
+                     [ref3 setValue:last];
                  }
+                 
+                 //update last MOI database
+                 Firebase *ref3 = [ref2 childByAppendingPath: result[@"name"]];
+                 NSDictionary *last = @{@"Date": string};
+                 [ref3 setValue:last];
              }
          }];
     }
