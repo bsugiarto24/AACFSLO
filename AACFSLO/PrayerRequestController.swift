@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class PrayerRequestController: UIViewController {
+class PrayerRequestController: UIViewController, UITextViewDelegate{
     
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
@@ -38,8 +38,28 @@ class PrayerRequestController: UIViewController {
         submitButton.addTarget(self, action: #selector(PrayerRequestController.submitPrayer(_:)), forControlEvents: .TouchUpInside)
         
         //select all for textField
-        textField.selectAll(submitButton)
+        //textField.selectAll(submitButton)
+        
+        textField.text = "Enter a prayer"
+        textField.textColor = UIColor.lightGrayColor()
+        self.textField.delegate = self;
     }
+    
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.textColor == UIColor.lightGrayColor() {
+            textView.text = nil
+            textView.textColor = UIColor.blackColor()
+        }
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Placeholder"
+            textView.textColor = UIColor.lightGrayColor()
+        }
+    }
+
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
@@ -90,8 +110,8 @@ class PrayerRequestController: UIViewController {
                     let post1 = ["author": user, "prayer": message,"date": time2]
                     let post1Ref = prayerRef.childByAutoId()
                     
-                    if(message == "" || message.characters.count > 120) {
-                        //shows an alert window
+                    if(message == "") {
+                        //no message
                         let alertView = UIAlertView();
                         alertView.addButtonWithTitle("Ok");
                         alertView.title = "Invalid Prayer";
@@ -99,15 +119,32 @@ class PrayerRequestController: UIViewController {
                         alertView.show();
                     }
                     else if(message.characters.count > 120){
-                        //shows an alert window
+                        //message too long
                         let alertView = UIAlertView();
                         alertView.addButtonWithTitle("Ok");
                         alertView.title = "Invalid Prayer";
                         alertView.message = "Your Prayer is Too Long";
                         alertView.show();
                     }
+                    else if !Reachability.isConnectedToNetwork() {
+                        //no internet connection
+                        let alertView = UIAlertView();
+                        alertView.addButtonWithTitle("Ok");
+                        alertView.title = "No Internet Connection";
+                        alertView.message = "Please connect to the internet";
+                        alertView.show();
+                    }
                     else {
-                         post1Ref.setValue(post1)
+                        post1Ref.setValue(post1)
+                        //successful prayer
+                        let alertView = UIAlertView();
+                        alertView.addButtonWithTitle("Ok");
+                        alertView.title = "Sent Prayer";
+                        alertView.message = "Your Prayer has Been Receieved";
+                        alertView.show();
+                        
+                        // resets text
+                        self.textField.text = ""
                     }
                 }
             })
@@ -118,19 +155,45 @@ class PrayerRequestController: UIViewController {
                 "prayer": message,
                 "date": time]
             let post1Ref = prayerRef.childByAutoId()
-            post1Ref.setValue(post1)
+            if(message == "") {
+                //no message
+                let alertView = UIAlertView();
+                alertView.addButtonWithTitle("Ok");
+                alertView.title = "Invalid Prayer";
+                alertView.message = "Please Enter a Prayer";
+                alertView.show();
+            }
+            else if(message.characters.count > 120){
+                //message too long
+                let alertView = UIAlertView();
+                alertView.addButtonWithTitle("Ok");
+                alertView.title = "Invalid Prayer";
+                alertView.message = "Your Prayer is Too Long";
+                alertView.show();
+            }
+            else if !Reachability.isConnectedToNetwork() {
+                //no internet connection
+                let alertView = UIAlertView();
+                alertView.addButtonWithTitle("Ok");
+                alertView.title = "No Internet Connection";
+                alertView.message = "Please connect to the internet";
+                alertView.show();
+            }
+            else {
+                post1Ref.setValue(post1)
+
+                //successful prayer
+                let alertView = UIAlertView();
+                alertView.addButtonWithTitle("Ok");
+                alertView.title = "Sent Prayer";
+                alertView.message = "Your Prayer has Been Receieved";
+                alertView.show();
+                
+                // resets text
+                self.textField.text = ""
+            }
         }
         
-       
-        //shows an alert window
-        let alertView = UIAlertView();
-        alertView.addButtonWithTitle("Ok");
-        alertView.title = "Sent Prayer";
-        alertView.message = "Your Prayer has Been Receieved";
-        alertView.show();
-        
-        // resets text
-        textField.text = ""
     }
     
 }

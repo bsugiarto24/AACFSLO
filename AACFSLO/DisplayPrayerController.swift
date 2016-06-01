@@ -35,6 +35,15 @@ class DisplayPrayerController: UITableViewController {
         filtered.removeAtIndex(0)
         keys.removeAtIndex(0)
         
+        //no internet connection
+        if !Reachability.isConnectedToNetwork() {
+            let alertView = UIAlertView();
+            alertView.addButtonWithTitle("Ok");
+            alertView.title = "No Internet Connection";
+            alertView.message = "Please connect to the internet";
+            alertView.show();
+        }
+        
         
         //if user is logged in
         if((FBSDKAccessToken.currentAccessToken()) != nil){
@@ -48,9 +57,7 @@ class DisplayPrayerController: UITableViewController {
                             if(!date.containsString(".")) {
                                 date = self.epochtoDate(Double(date)!)
                             }
-                            
-                            
-                            
+
                             let name = self.parseOptional(String(snapshot.value["author"]))
                             print("\(snapshot.key) prayer:  \(prayer)")
                             self.self.data.append("\(prayer) \r\nby \(name) on \(date)")
@@ -78,7 +85,6 @@ class DisplayPrayerController: UITableViewController {
         }else{
             self.title = "All Prayer Requests"
         }
-        
         prayerTableView.reloadData()
     }
     
@@ -145,6 +151,8 @@ class DisplayPrayerController: UITableViewController {
             //remove from row
             prayerTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
+        
+        //removing prayer from all prayer table
         if !useFiltered && editingStyle == .Delete {
             let alertView = UIAlertView();
             alertView.addButtonWithTitle("Ok");
@@ -152,7 +160,6 @@ class DisplayPrayerController: UITableViewController {
             alertView.message = "Please Toggle to Delete Prayer";
             alertView.show();
         }
-        
     }
     
     

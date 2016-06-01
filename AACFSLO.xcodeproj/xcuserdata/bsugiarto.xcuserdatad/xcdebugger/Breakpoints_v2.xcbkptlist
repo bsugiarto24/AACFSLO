@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AACFSLO/DisplayPrayerController.swift"
-            timestampString = "486168486.69251"
+            filePath = "AACFSLO/Reachability.swift"
+            timestampString = "486515459.570471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "isConnectedToNetwork()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

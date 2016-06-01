@@ -40,7 +40,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y5V-Bj-YBp" customClass="FBSDKLoginButton">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y5V-Bj-YBp" customClass="FBSDKLoginButton">
                                 <rect key="frame" x="58" y="424" width="204" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -51,7 +51,7 @@
                                     <outlet property="delegate" destination="zyU-nX-A9V" id="RMg-oR-xY0"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mtp-El-ZRH">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mtp-El-ZRH">
                                 <rect key="frame" x="93" y="476" width="134" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="pxL-hW-dC9"/>
@@ -73,6 +73,7 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Mtp-El-ZRH" secondAttribute="centerX" id="1T5-2R-zjD"/>
                             <constraint firstItem="Mtp-El-ZRH" firstAttribute="top" secondItem="y5V-Bj-YBp" secondAttribute="bottom" constant="8" id="1w8-Yf-6GZ"/>
+                            <constraint firstItem="0Iu-tW-O04" firstAttribute="top" secondItem="Mtp-El-ZRH" secondAttribute="bottom" constant="62" id="RyY-S4-VOk"/>
                             <constraint firstAttribute="centerX" secondItem="y5V-Bj-YBp" secondAttribute="centerX" id="ShV-cK-Sf1"/>
                         </constraints>
                     </view>

@@ -27,6 +27,15 @@ class MOIRecommendationController: UITableViewController {
         self.title = "MOI Recommendations"
         data.removeAtIndex(0)
         
+        if !Reachability.isConnectedToNetwork() {
+            //no internet connection
+            let alertView = UIAlertView();
+            alertView.addButtonWithTitle("Ok");
+            alertView.title = "No Internet Connection";
+            alertView.message = "Please connect to the internet";
+            alertView.show();
+        }
+        
         let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/lastMoi")
         ref.queryOrderedByChild("Date").observeEventType(.ChildAdded, withBlock: { snapshot in
             var date = self.parseOptional(String(snapshot.value["Date"]))

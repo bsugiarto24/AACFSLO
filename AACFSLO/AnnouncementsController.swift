@@ -29,6 +29,15 @@ class AnnouncementsController: UITableViewController {
         self.title = "Announcements"
         data.removeAtIndex(0)
         
+        //no internet connection
+        if !Reachability.isConnectedToNetwork() {
+            let alertView = UIAlertView();
+            alertView.addButtonWithTitle("Ok");
+            alertView.title = "No Internet Connection";
+            alertView.message = "Please connect to the internet";
+            alertView.show();
+        }
+        
         let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/Announcemnts")
         ref.queryOrderedByChild("date").observeEventType(.ChildAdded, withBlock: { snapshot in
             if let prayer = snapshot.value["announcement"] as? String {

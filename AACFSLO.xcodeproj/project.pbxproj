@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4266E1351CF83656002F6B60 /* Readme.md in Sources */ = {isa = PBXBuildFile; fileRef = 4266E1341CF83656002F6B60 /* Readme.md */; };
+		42C9E7721CFF8AEC00F9C1C8 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C9E7711CFF8AEC00F9C1C8 /* Reachability.swift */; };
 		42D0B4EF1CF51F7E006CE86A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B4EE1CF51F7E006CE86A /* main.m */; };
 		42D0B4F21CF51F7E006CE86A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B4F11CF51F7E006CE86A /* AppDelegate.m */; };
 		42D0B4FA1CF51F7E006CE86A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D0B4F91CF51F7E006CE86A /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 
 /* Begin PBXFileReference section */
 		4266E1341CF83656002F6B60 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		42C9E7711CFF8AEC00F9C1C8 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		42D0B4EA1CF51F7E006CE86A /* AACFSLO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AACFSLO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D0B4EE1CF51F7E006CE86A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		42D0B4F01CF51F7E006CE86A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				42D0B5231CF51F9B006CE86A /* MoiListController.swift */,
 				42F5C31F1CF77F3A006AB694 /* MOIRecommendationController.swift */,
 				42D0B5251CF51F9B006CE86A /* CheckBox.swift */,
+				42C9E7711CFF8AEC00F9C1C8 /* Reachability.swift */,
 			);
 			name = "Swift Controllers";
 			sourceTree = "<group>";
@@ -346,6 +349,11 @@
 					42D0B4E91CF51F7E006CE86A = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = PMMDKXR2GW;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					42D0B5021CF51F7E006CE86A = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -423,6 +431,7 @@
 				42D0B5291CF51F9B006CE86A /* PrayerRequestController.swift in Sources */,
 				42D0B5441CF51FBD006CE86A /* SCSettings.m in Sources */,
 				42D0B4EF1CF51F7E006CE86A /* main.m in Sources */,
+				42C9E7721CFF8AEC00F9C1C8 /* Reachability.swift in Sources */,
 				42D0B5281CF51F9B006CE86A /* MoiListController.swift in Sources */,
 				42F5C3201CF77F3A006AB694 /* MOIRecommendationController.swift in Sources */,
 				42D0B5411CF51FBD006CE86A /* SCMainViewController.m in Sources */,
