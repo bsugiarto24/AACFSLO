@@ -18,6 +18,7 @@ class DisplayPrayerController: UITableViewController {
     var filtered = ["data"]
     var keys = ["data"]
     var useFiltered = false
+    var username = ""
     
     
     
@@ -49,22 +50,23 @@ class DisplayPrayerController: UITableViewController {
         if((FBSDKAccessToken.currentAccessToken()) != nil){
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
                 if (error == nil){
+                    self.username = Reachability.parseOptional(String(result["name"]))
                     let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/prayers")
                     ref.queryOrderedByChild("date").observeEventType(.ChildAdded, withBlock: { snapshot in
                         if let prayer = snapshot.value["prayer"] as? String {
-                            var date = self.parseOptional(String(snapshot.value["date"]))
+                            var date = Reachability.parseOptional(String(snapshot.value["date"]))
                             
                             if(!date.containsString(".")) {
-                                date = self.epochtoDate(Double(date)!)
+                                date = Reachability.epochtoDate(Double(date)!)
                             }
 
-                            let name = self.parseOptional(String(snapshot.value["author"]))
+                            let name = Reachability.parseOptional(String(snapshot.value["author"]))
                             print("\(snapshot.key) prayer:  \(prayer)")
                             self.self.data.append("\(prayer) \r\nby \(name) on \(date)")
                             self.self.keys.append(snapshot.key)
                             
                             //add to filtered if prayer is own prayer
-                            if(name == self.parseOptional(String(result["name"]))) {
+                            if(name == Reachability.parseOptional(String(result["name"]))) {
                                 self.self.filtered.append("\(prayer) \r\nby \(name) on \(date)")
                             }
                             self.prayerTableView.reloadData()
@@ -94,19 +96,7 @@ class DisplayPrayerController: UITableViewController {
         }
         return data.count
     }
-    
-    func epochtoDate(epoch : Double) ->String {
-        let foo: NSTimeInterval = epoch / 1000
-        let theDate = NSDate(timeIntervalSince1970: foo)
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day , .Month , .Year], fromDate: theDate)
-        let year =  components.year
-        let month = components.month
-        let day = components.day
-        
-        return String(year) + "." + String(month) + "." + String(day)
-    }
-    
+
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("LabelCell", forIndexPath: indexPath)
@@ -152,22 +142,51 @@ class DisplayPrayerController: UITableViewController {
             prayerTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
         
-        //removing prayer from all prayer table
-        if !useFiltered && editingStyle == .Delete {
-            let alertView = UIAlertView();
-            alertView.addButtonWithTitle("Ok");
-            alertView.title = "Invalid Access";
-            alertView.message = "Please Toggle to Delete Prayer";
-            alertView.show();
+        
+        //removing prayer from all prayer table as admin
+        if !useFiltered && username == "Bryan Sugiarto" && editingStyle == .Delete {
+            let message = data[data.count - indexPath.row - 1]
+            var index = 0
+            for str in data {
+                if(message == str){
+                    data.removeAtIndex(index)
+                    var index2 = 0
+                    for str2 in filtered {
+                        if(message == str2){
+                            filtered.removeAtIndex(index2)
+                            break
+                        }
+                        index2+=1
+                    }
+                    
+                    break
+                }
+                index+=1
+            }
+            print(index)
+            print(data)
+            print(keys)
+            
+            //remove from database
+            let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/prayers")
+            let ref2 = ref.childByAppendingPath(keys[index])
+            print(ref2)
+            ref2.removeValue()
+            
+            //remove key from array
+            keys.removeAtIndex(index)
+            
+            //remove from row
+            prayerTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
-    }
-    
-    
-    func parseOptional(str : String) ->String{
-        if(str.containsString("Optional(")) {
-            return str.substringWithRange(Range<String.Index>(str.startIndex.advancedBy(9)..<str.endIndex.advancedBy(-1)))
+        //remove prayer that is not authorized
+        else if !useFiltered && editingStyle == .Delete {
+                let alertView = UIAlertView();
+                alertView.addButtonWithTitle("Ok");
+                alertView.title = "Invalid Access";
+                alertView.message = "Please Toggle to Delete Prayer";
+                alertView.show();
         }
-        return str
     }
     
 }

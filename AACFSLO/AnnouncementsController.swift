@@ -41,8 +41,8 @@ class AnnouncementsController: UITableViewController {
         let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/Announcemnts")
         ref.queryOrderedByChild("date").observeEventType(.ChildAdded, withBlock: { snapshot in
             if let prayer = snapshot.value["announcement"] as? String {
-                let date = self.parseOptional(String(snapshot.value["date"]))
-                let name = self.parseOptional(String(snapshot.value["author"]))
+                let date = Reachability.parseOptional(String(snapshot.value["date"]))
+                let name = Reachability.parseOptional(String(snapshot.value["author"]))
                 print("\(snapshot.key) prayer this:  \(prayer)")
                 self.self.data.append("\(prayer) \r\nby \(name) on \(date)")
                 self.announcementView.reloadData()
@@ -61,11 +61,5 @@ class AnnouncementsController: UITableViewController {
         return cell
     }
     
-    func parseOptional(str : String) ->String{
-        if(str.containsString("Optional(")) {
-            return str.substringWithRange(str.startIndex.advancedBy(9)..<str.endIndex.advancedBy(-1))
-        }
-        return str
-    }
 
 }

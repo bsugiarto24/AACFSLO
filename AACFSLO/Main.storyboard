@@ -63,8 +63,8 @@
                                     <segue destination="S2p-RI-y02" kind="modal" identifier="continue" modalTransitionStyle="flipHorizontal" id="mFH-Ih-cZn"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="6PK-7S-cnw">
-                                <rect key="frame" x="102" y="173" width="117" height="121"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="6PK-7S-cnw">
+                                <rect key="frame" x="114" y="175" width="93" height="65"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                         </subviews>
@@ -73,6 +73,7 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Mtp-El-ZRH" secondAttribute="centerX" id="1T5-2R-zjD"/>
                             <constraint firstItem="Mtp-El-ZRH" firstAttribute="top" secondItem="y5V-Bj-YBp" secondAttribute="bottom" constant="8" id="1w8-Yf-6GZ"/>
+                            <constraint firstItem="y5V-Bj-YBp" firstAttribute="top" secondItem="6PK-7S-cnw" secondAttribute="bottom" constant="100" id="CCF-Qn-M1z"/>
                             <constraint firstItem="0Iu-tW-O04" firstAttribute="top" secondItem="Mtp-El-ZRH" secondAttribute="bottom" constant="62" id="RyY-S4-VOk"/>
                             <constraint firstAttribute="centerX" secondItem="y5V-Bj-YBp" secondAttribute="centerX" id="ShV-cK-Sf1"/>
                         </constraints>
@@ -329,12 +330,12 @@
         <scene sceneID="w7k-Jv-3si">
             <objects>
                 <tableViewController id="hwb-zm-gkJ" customClass="MOIRecommendationController" customModule="AACFSLO" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nTk-Ko-na0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nTk-Ko-na0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recCell" id="4eS-2V-TMb">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recCell" id="4eS-2V-TMb">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4eS-2V-TMb" id="C3v-0k-Vav">

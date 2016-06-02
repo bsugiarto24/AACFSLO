@@ -45,18 +45,18 @@ class MoiListController: UITableViewController {
         if((FBSDKAccessToken.currentAccessToken()) != nil){
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
                 if (error == nil){
-                    self.user = self.parseOptional(String(result["name"]))
+                    self.user = Reachability.parseOptional(String(result["name"]))
                     let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/users")
-                    let ref2 = ref.childByAppendingPath(self.parseOptional(String(result["name"])))
+                    let ref2 = ref.childByAppendingPath(Reachability.parseOptional(String(result["name"])))
                     
                     //query user's Moi's
                     ref2.queryOrderedByChild("Date").observeEventType(.ChildAdded, withBlock: { snapshot in
                         if let partner = snapshot.value["Partner"] as? String {
-                            var date = self.parseOptional(String(snapshot.value["Date"]))
+                            var date = Reachability.parseOptional(String(snapshot.value["Date"]))
                             
                             //converts epoch time to date if necessary
                             if(!date.containsString(".")) {
-                                date = self.epochtoDate(Double(date)!)
+                                date = Reachability.epochtoDate(Double(date)!)
                             }
                             
                             print("\(snapshot.key) prayer this:  \(partner)")
@@ -90,25 +90,6 @@ class MoiListController: UITableViewController {
         return cell
     }
     
-    func parseOptional(str : String) ->String{
-        if(str.containsString("Optional(")) {
-            return str.substringWithRange(str.startIndex.advancedBy(9)..<str.endIndex.advancedBy(-1))
-        }
-        return str
-    }
-    
-    func epochtoDate(epoch : Double) ->String {
-        let foo: NSTimeInterval = epoch / 1000
-        let theDate = NSDate(timeIntervalSince1970: foo)
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day , .Month , .Year], fromDate: theDate)
-        let year =  components.year
-        let month = components.month
-        let day = components.day
-        
-        return String(year) + "." + String(month) + "." + String(day)
-    }
-    
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
@@ -121,8 +102,6 @@ class MoiListController: UITableViewController {
             keys.removeAtIndex(keys.count - indexPath.row - 1)
             data.removeAtIndex(data.count - indexPath.row - 1)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
 }

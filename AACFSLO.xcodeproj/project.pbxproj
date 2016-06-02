@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4266E1351CF83656002F6B60 /* Readme.md in Sources */ = {isa = PBXBuildFile; fileRef = 4266E1341CF83656002F6B60 /* Readme.md */; };
 		42C9E7721CFF8AEC00F9C1C8 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C9E7711CFF8AEC00F9C1C8 /* Reachability.swift */; };
 		42D0B4EF1CF51F7E006CE86A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B4EE1CF51F7E006CE86A /* main.m */; };
 		42D0B4F21CF51F7E006CE86A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B4F11CF51F7E006CE86A /* AppDelegate.m */; };
@@ -417,7 +416,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4266E1351CF83656002F6B60 /* Readme.md in Sources */,
 				42D0B5421CF51FBD006CE86A /* SCPickerViewController.m in Sources */,
 				42D0B5401CF51FBD006CE86A /* SCLoginViewController.m in Sources */,
 				42D0B5321CF51FAF006CE86A /* SCAppDelegate.m in Sources */,
@@ -574,7 +572,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = AACFSLO/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AACFSLO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -595,7 +593,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = AACFSLO/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AACFSLO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
