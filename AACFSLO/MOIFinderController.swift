@@ -9,10 +9,10 @@
 import UIKit
 import Firebase
 
-class MOIRecommendationController: UITableViewController {
-
-    @IBOutlet weak var menuButton: UIBarButtonItem!
+class MOIFinderController: UITableViewController {
     @IBOutlet var recTableView: UITableView!
+    
+    @IBOutlet weak var menuButton2: UIBarButtonItem!
     var data = ["data"]
     var keys = ["data"]
     var username = ""
@@ -21,8 +21,8 @@ class MOIRecommendationController: UITableViewController {
         super.viewDidLoad()
         
         if self.revealViewController() != nil {
-            menuButton.target = self.revealViewController()
-            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            menuButton2.target = self.revealViewController()
+            menuButton2.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
@@ -68,7 +68,7 @@ class MOIRecommendationController: UITableViewController {
             self.recTableView.reloadData()
             
         })
-
+        
         print(data.count)
         print(data)
     }
@@ -76,10 +76,10 @@ class MOIRecommendationController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
-    }    
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("recCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("finderCell", forIndexPath: indexPath)
         cell.textLabel?.text = data[indexPath.row]
         return cell
     }

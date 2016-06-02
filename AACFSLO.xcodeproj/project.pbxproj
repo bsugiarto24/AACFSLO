@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4206EC681D00174D002BC909 /* MOIFinderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4206EC671D00174D002BC909 /* MOIFinderController.swift */; };
 		42C9E7721CFF8AEC00F9C1C8 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C9E7711CFF8AEC00F9C1C8 /* Reachability.swift */; };
 		42D0B4EF1CF51F7E006CE86A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B4EE1CF51F7E006CE86A /* main.m */; };
 		42D0B4F21CF51F7E006CE86A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B4F11CF51F7E006CE86A /* AppDelegate.m */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4206EC671D00174D002BC909 /* MOIFinderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOIFinderController.swift; sourceTree = "<group>"; };
 		4266E1341CF83656002F6B60 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		42C9E7711CFF8AEC00F9C1C8 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		42D0B4EA1CF51F7E006CE86A /* AACFSLO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AACFSLO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,6 +248,7 @@
 				42D0B5241CF51F9B006CE86A /* PrayerRequestController.swift */,
 				42D0B5231CF51F9B006CE86A /* MoiListController.swift */,
 				42F5C31F1CF77F3A006AB694 /* MOIRecommendationController.swift */,
+				4206EC671D00174D002BC909 /* MOIFinderController.swift */,
 				42D0B5251CF51F9B006CE86A /* CheckBox.swift */,
 				42C9E7711CFF8AEC00F9C1C8 /* Reachability.swift */,
 			);
@@ -433,6 +436,7 @@
 				42D0B5281CF51F9B006CE86A /* MoiListController.swift in Sources */,
 				42F5C3201CF77F3A006AB694 /* MOIRecommendationController.swift in Sources */,
 				42D0B5411CF51FBD006CE86A /* SCMainViewController.m in Sources */,
+				4206EC681D00174D002BC909 /* MOIFinderController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,7 +576,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = AACFSLO/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AACFSLO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -593,7 +597,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = AACFSLO/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AACFSLO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
