@@ -15,36 +15,37 @@ class MOIFinderController: UITableViewController {
     var data = ["data"]
     var username = ""
     var isBusy = true
+    var location =  ""
+    var alert = UIAlertController(title: "Enter Location", message: "", preferredStyle: .Alert)
 
-    
-    func refresh()
-    {
-        data.removeAll()
-        
-        let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/MoiNow")
-        ref.queryOrderedByChild("status").observeEventType(.ChildAdded, withBlock: { snapshot in
-            let status = Reachability.parseOptional(String(snapshot.value["status"]))
-            print("\(snapshot.key) - \(status)")
-            self.self.data.append("\(snapshot.key) - \(status)")
-            self.recTableView.reloadData()
-            print(self.data)
-        })
-        self.refreshControl?.endRefreshing()
-    }
-    
-    func refresh(sender:AnyObject) {
-        refresh()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var helloWorldTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: Selector("refresh"), userInfo: nil, repeats: true)
-
-        //let mySelector: Selector = "toggleStatus"
-        let rightNavigationBarItem = UIBarButtonItem(title: "Toggle Status", style: .Plain, target: self, action: "toggleStatus")
         
+        //timer
+        var helloWorldTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(MOIFinderController.refresh as (MOIFinderController) -> () -> ()), userInfo: nil, repeats: true)
+
+        //toggle button
+        let rightNavigationBarItem = UIBarButtonItem(title: "Toggle", style: .Plain, target: self, action: #selector(MOIFinderController.toggleStatus))
         navigationItem.rightBarButtonItem = rightNavigationBarItem
         
+        
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
+            textField.text = ""
+            textField.placeholder = "Location"
+        })
+        
+        //Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            let textField = self.alert.textFields![0] as UITextField
+            print("Text field: \(textField.text)")
+            self.location = textField.text!
+            self.finishToggle()
+        }))
+
+        
+        //menu button
         if self.revealViewController() != nil {
             menuButton2.target = self.revealViewController()
             menuButton2.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -54,7 +55,7 @@ class MOIFinderController: UITableViewController {
         //refresh
         self.refreshControl?.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
 
-        
+        //set up
         self.title = "MOI Finder"
         data.removeAtIndex(0)
         Reachability.internetCheck()
@@ -80,19 +81,64 @@ class MOIFinderController: UITableViewController {
         let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/MoiNow")
         ref.queryOrderedByChild("status").observeEventType(.ChildAdded, withBlock: { snapshot in
             let status = Reachability.parseOptional(String(snapshot.value["status"]))
-            print("\(snapshot.key) - \(status)")
-            self.self.data.append("\(snapshot.key) - \(status)")
-            self.recTableView.reloadData()
+            let loc = Reachability.parseOptional(String(snapshot.value["location"]))
             
+            if(status == "free"){
+                self.self.data.append("\(snapshot.key) - \(status) at \(loc)")
+            }else{
+                self.self.data.append("\(snapshot.key) - \(status)")
+            }
+            self.recTableView.reloadData()
         })
         print(data)
     }
     
+    // refreshes the data in tableview
+    func refresh(){
+        data.removeAll()
+        
+        let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/MoiNow")
+        ref.queryOrderedByChild("status").observeEventType(.ChildAdded, withBlock: { snapshot in
+            let status = Reachability.parseOptional(String(snapshot.value["status"]))
+            let loc = Reachability.parseOptional(String(snapshot.value["location"]))
+            
+            if(status == "free"){
+                self.self.data.append("\(snapshot.key) - \(status) at \(loc)")
+            }else{
+                self.self.data.append("\(snapshot.key) - \(status)")
+            }
+            
+            self.recTableView.reloadData()
+            print(self.data)
+        })
+        self.refreshControl?.endRefreshing()
+    }
+    
+    //called when table is pulled down
+    func refresh(sender:AnyObject) {
+        refresh()
+    }
     
     
+    //when user clicks on toggle status
     func toggleStatus(){
+        print("toggle status")
+        
+        //if free then ask for location
+        if(isBusy){
+            self.presentViewController(alert, animated: true, completion: nil)
+        }else{
+            finishToggle()
+        }
+    }
+    
+    
+    func finishToggle() {
+        print("finish toggle")
         let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/MoiNow")
         let ref2 = ref.childByAppendingPath(username)
+        
+        //check if logged in
         if(username == "") {
             let alertView = UIAlertView();
             alertView.addButtonWithTitle("Ok");
@@ -101,27 +147,34 @@ class MOIFinderController: UITableViewController {
             alertView.show();
             return
         }
-        var individual = ["name": username, "status": "free"]
-        var status = "free";
         
+        //toggle data in database
+        var individual = ["name": username]
+        var status = "free";
         if(isBusy){
-            individual = ["name": username, "status": "free"]
+            individual = ["name": username, "status": "free", "location": location]
         }else{
             individual = ["name": username, "status": "busy"]
             status = "busy"
         }
         ref2.setValue(individual);
         
+        isBusy = !isBusy;
+        
+        //change status on tableview
         var i = 0
         while(i < data.count) {
             if(data[i].containsString(username)){
-                data[i] = username + " - " + status
+                if(!isBusy){
+                    print("adding location")
+                    data[i] = username + " - " + status + " at " + location
+                }else{
+                    data[i] = username + " - " + status
+                }
                 break;
             }
             i+=1
         }
-
-        isBusy = !isBusy;
         recTableView.reloadData()
     }
     
@@ -132,6 +185,12 @@ class MOIFinderController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("finderCell", forIndexPath: indexPath)
         cell.textLabel?.text = data[data.count - indexPath.row - 1]
+        let str = data[data.count - indexPath.row - 1]
+        if(str.containsString("free")){
+            cell.backgroundColor = UIColor.greenColor()
+        }else {
+            cell.backgroundColor = UIColor.redColor()
+        }
         return cell
     }
     
