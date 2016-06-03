@@ -21,7 +21,6 @@
 		42D0B5291CF51F9B006CE86A /* PrayerRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B5241CF51F9B006CE86A /* PrayerRequestController.swift */; };
 		42D0B52A1CF51F9B006CE86A /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B5251CF51F9B006CE86A /* CheckBox.swift */; };
 		42D0B52E1CF51FA6006CE86A /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B52C1CF51FA6006CE86A /* SWRevealViewController.m */; };
-		42D0B5321CF51FAF006CE86A /* SCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B5301CF51FAF006CE86A /* SCAppDelegate.m */; };
 		42D0B5331CF51FAF006CE86A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D0B5311CF51FAF006CE86A /* Main.storyboard */; };
 		42D0B5401CF51FBD006CE86A /* SCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B5351CF51FBD006CE86A /* SCLoginViewController.m */; };
 		42D0B5411CF51FBD006CE86A /* SCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B5371CF51FBD006CE86A /* SCMainViewController.m */; };
@@ -88,8 +87,6 @@
 		42D0B5251CF51F9B006CE86A /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		42D0B52B1CF51FA6006CE86A /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		42D0B52C1CF51FA6006CE86A /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		42D0B52F1CF51FAF006CE86A /* SCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAppDelegate.h; sourceTree = "<group>"; };
-		42D0B5301CF51FAF006CE86A /* SCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAppDelegate.m; sourceTree = "<group>"; };
 		42D0B5311CF51FAF006CE86A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		42D0B5341CF51FBD006CE86A /* SCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLoginViewController.h; sourceTree = "<group>"; };
 		42D0B5351CF51FBD006CE86A /* SCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLoginViewController.m; sourceTree = "<group>"; };
@@ -210,8 +207,6 @@
 		42D0B4ED1CF51F7E006CE86A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				42D0B52F1CF51FAF006CE86A /* SCAppDelegate.h */,
-				42D0B5301CF51FAF006CE86A /* SCAppDelegate.m */,
 				42D0B4FB1CF51F7E006CE86A /* LaunchScreen.storyboard */,
 				42D0B4FE1CF51F7E006CE86A /* Info.plist */,
 				42D0B4F01CF51F7E006CE86A /* AppDelegate.h */,
@@ -421,7 +416,6 @@
 			files = (
 				42D0B5421CF51FBD006CE86A /* SCPickerViewController.m in Sources */,
 				42D0B5401CF51FBD006CE86A /* SCLoginViewController.m in Sources */,
-				42D0B5321CF51FAF006CE86A /* SCAppDelegate.m in Sources */,
 				42D0B52A1CF51F9B006CE86A /* CheckBox.swift in Sources */,
 				42D0B5431CF51FBD006CE86A /* SCProfilePictureButton.m in Sources */,
 				42D0B4F21CF51F7E006CE86A /* AppDelegate.m in Sources */,

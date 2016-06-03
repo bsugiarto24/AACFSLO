@@ -93,6 +93,14 @@ class MOIFinderController: UITableViewController {
     func toggleStatus(){
         let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/MoiNow")
         let ref2 = ref.childByAppendingPath(username)
+        if(username == "") {
+            let alertView = UIAlertView();
+            alertView.addButtonWithTitle("Ok");
+            alertView.title = "You are not Logged In";
+            alertView.message = "Please Log In";
+            alertView.show();
+            return
+        }
         var individual = ["name": username, "status": "free"]
         var status = "free";
         

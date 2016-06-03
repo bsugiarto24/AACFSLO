@@ -55,7 +55,7 @@ class PrayerRequestController: UIViewController, UITextViewDelegate{
     
     func textViewDidEndEditing(textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Placeholder"
+            textView.text = "Enter a prayer"
             textView.textColor = UIColor.lightGrayColor()
         }
     }
@@ -163,7 +163,7 @@ class PrayerRequestController: UIViewController, UITextViewDelegate{
                 alertView.message = "Please Enter a Prayer";
                 alertView.show();
             }
-            else if(message.characters.count > 120){
+            else if(message.characters.count > 200){
                 //message too long
                 let alertView = UIAlertView();
                 alertView.addButtonWithTitle("Ok");
