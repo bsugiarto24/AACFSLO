@@ -21,6 +21,18 @@ public class Reachability {
     }
     
     
+    class func internetCheck() {
+        //check internet connection
+        if !Reachability.isConnectedToNetwork() {
+            let alertView = UIAlertView();
+            alertView.addButtonWithTitle("Ok");
+            alertView.title = "No Internet Connection";
+            alertView.message = "Please connect to the internet";
+            alertView.show();
+        }
+    }
+    
+    
     //parses "Optional()" from a string
     class func parseOptional(str : String) ->String{
         if(str.containsString("Optional(")) {

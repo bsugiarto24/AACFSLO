@@ -35,15 +35,7 @@ class DisplayPrayerController: UITableViewController {
         data.removeAtIndex(0)
         filtered.removeAtIndex(0)
         keys.removeAtIndex(0)
-        
-        //no internet connection
-        if !Reachability.isConnectedToNetwork() {
-            let alertView = UIAlertView();
-            alertView.addButtonWithTitle("Ok");
-            alertView.title = "No Internet Connection";
-            alertView.message = "Please connect to the internet";
-            alertView.show();
-        }
+        Reachability.internetCheck()
         
         
         //if user is logged in

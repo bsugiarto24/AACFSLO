@@ -31,15 +31,7 @@ class MoiListController: UITableViewController {
         self.title = "MOI History"
         data.removeAtIndex(0)
         keys.removeAtIndex(0)
-        
-        if !Reachability.isConnectedToNetwork() {
-            //no internet connection
-            let alertView = UIAlertView();
-            alertView.addButtonWithTitle("Ok");
-            alertView.title = "No Internet Connection";
-            alertView.message = "Please connect to the internet";
-            alertView.show();
-        }
+        Reachability.internetCheck()
         
         //check FB login
         if((FBSDKAccessToken.currentAccessToken()) != nil){

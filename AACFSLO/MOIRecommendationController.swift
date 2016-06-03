@@ -29,15 +29,7 @@ class MOIRecommendationController: UITableViewController {
         self.title = "MOI Recommendations"
         data.removeAtIndex(0)
         keys.removeAtIndex(0)
-        
-        if !Reachability.isConnectedToNetwork() {
-            //no internet connection
-            let alertView = UIAlertView();
-            alertView.addButtonWithTitle("Ok");
-            alertView.title = "No Internet Connection";
-            alertView.message = "Please connect to the internet";
-            alertView.show();
-        }
+        Reachability.internetCheck()
         
         //check which user is logged in
         if((FBSDKAccessToken.currentAccessToken()) != nil){
@@ -88,12 +80,12 @@ class MOIRecommendationController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if username == "Bryan Sugiarto" && editingStyle == .Delete {
             let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/lastMoi")
-            let ref3 = ref.childByAppendingPath(keys[keys.count - indexPath.row - 1])
+            let ref3 = ref.childByAppendingPath(keys[indexPath.row])
             print(ref3)
             
             ref3.removeValue()
-            keys.removeAtIndex(keys.count - indexPath.row - 1)
-            data.removeAtIndex(data.count - indexPath.row - 1)
+            keys.removeAtIndex(indexPath.row)
+            data.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Delete {
             //shows an alert window if not admin

@@ -24,6 +24,8 @@
 
 #import <FBSDKShareKit/FBSDKShareKit.h>
 
+#import <Firebase/Firebase.h>
+
 #import "SCSettings.h"
 
 @implementation SCAppDelegate
@@ -71,6 +73,26 @@
             [[UIApplication sharedApplication] openURL:url];
         }
     }];
+}
+
+
+//application terminates
+- (void)applicationWillResignActive:(UIApplication *)application{
+    if ([FBSDKAccessToken currentAccessToken]) {
+        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields": @"email,name,first_name"}]
+         startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+             if (!error) {
+                 
+                Firebase *ref = [[Firebase alloc] initWithUrl:@"https://crackling-inferno-4721.firebaseio.com/MoiNow"];
+                 ref = [ref childByAppendingPath: result[@"name"]];
+                 NSLog(@"userRef:%@", ref);
+                 NSDictionary *post2 = @{@"name": result[@"name"],
+                                        @"status": @"busy"
+                                             };
+                 [ref setValue: post2];
+             }
+         }];
+    }
 }
 
 @end
