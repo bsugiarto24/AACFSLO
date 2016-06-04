@@ -33,6 +33,9 @@ class MoiListController: UITableViewController {
         keys.removeAtIndex(0)
         Reachability.internetCheck()
         
+        //refresh
+        self.refreshControl?.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
         //check FB login
         if((FBSDKAccessToken.currentAccessToken()) != nil){
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
@@ -95,6 +98,47 @@ class MoiListController: UITableViewController {
             data.removeAtIndex(data.count - indexPath.row - 1)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
+    }
+    
+    //called when table is pulled down
+    func refresh(sender:AnyObject) {
+        data.removeAll()
+        if((FBSDKAccessToken.currentAccessToken()) != nil){
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
+                if (error == nil){
+                    self.user = Reachability.parseOptional(String(result["name"]))
+                    let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/users")
+                    let ref2 = ref.childByAppendingPath(Reachability.parseOptional(String(result["name"])))
+                    
+                    //query user's Moi's
+                    ref2.queryOrderedByChild("Date").observeEventType(.ChildAdded, withBlock: { snapshot in
+                        if let partner = snapshot.value["Partner"] as? String {
+                            var date = Reachability.parseOptional(String(snapshot.value["Date"]))
+                            
+                            //converts epoch time to date if necessary
+                            if(!date.containsString(".")) {
+                                date = Reachability.epochtoDate(Double(date)!)
+                            }
+                            
+                            print("\(snapshot.key) prayer this:  \(partner)")
+                            self.self.data.append("\(partner) on \(date)")
+                            self.self.keys.append(snapshot.key)
+                            self.moiTableView.reloadData()
+                        }
+                    })
+                    print(self.self.data.count)
+                    print(self.self.data)
+                }
+            })
+        }else {
+            //shows an alert window if not logged in
+            let alertView = UIAlertView();
+            alertView.addButtonWithTitle("Ok");
+            alertView.title = "You are not Logged In";
+            alertView.message = "Please Log In";
+            alertView.show();
+        }
+        self.refreshControl?.endRefreshing()
     }
 }
 

@@ -13,6 +13,7 @@ class MOIFinderController: UITableViewController {
     @IBOutlet var recTableView: UITableView!
     @IBOutlet weak var menuButton2: UIBarButtonItem!
     var data = ["data"]
+    var keys = ["data"]
     var username = ""
     var isBusy = true
     var location =  ""
@@ -22,15 +23,15 @@ class MOIFinderController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //timer
-        var helloWorldTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(MOIFinderController.refresh as (MOIFinderController) -> () -> ()), userInfo: nil, repeats: true)
+        //refresh timer
+        let refreshTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: #selector(MOIFinderController.refresh as (MOIFinderController) -> () -> ()), userInfo: nil, repeats: true)
 
         //toggle button
         let rightNavigationBarItem = UIBarButtonItem(title: "Toggle", style: .Plain, target: self, action: #selector(MOIFinderController.toggleStatus))
         navigationItem.rightBarButtonItem = rightNavigationBarItem
         
         
-        //2. Add the text field. You can configure it however you need.
+        //Add the text field. You can configure it however you need.
         alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
             textField.text = ""
             textField.placeholder = "Location"
@@ -83,6 +84,7 @@ class MOIFinderController: UITableViewController {
             let status = Reachability.parseOptional(String(snapshot.value["status"]))
             let loc = Reachability.parseOptional(String(snapshot.value["location"]))
             
+            self.self.keys.append(snapshot.key)
             if(status == "free"){
                 self.self.data.append("\(snapshot.key) - \(status) at \(loc)")
             }else{
@@ -96,11 +98,12 @@ class MOIFinderController: UITableViewController {
     // refreshes the data in tableview
     func refresh(){
         data.removeAll()
-        
+        keys.removeAll()
         let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/MoiNow")
         ref.queryOrderedByChild("status").observeEventType(.ChildAdded, withBlock: { snapshot in
             let status = Reachability.parseOptional(String(snapshot.value["status"]))
             let loc = Reachability.parseOptional(String(snapshot.value["location"]))
+            self.self.keys.append(snapshot.key)
             
             if(status == "free"){
                 self.self.data.append("\(snapshot.key) - \(status) at \(loc)")
@@ -158,10 +161,9 @@ class MOIFinderController: UITableViewController {
             status = "busy"
         }
         ref2.setValue(individual);
-        
         isBusy = !isBusy;
         
-        //change status on tableview
+        //toggles status on tableview
         var i = 0
         while(i < data.count) {
             if(data[i].containsString(username)){
@@ -193,6 +195,29 @@ class MOIFinderController: UITableViewController {
         }
         return cell
     }
+    
+    //delete cabailities
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if username == "Bryan Sugiarto" && editingStyle == .Delete {
+            let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/MoiNow")
+            let ref3 = ref.childByAppendingPath(keys[keys.count - indexPath.row - 1])
+            print(ref3)
+            
+            ref3.removeValue()
+            keys.removeAtIndex(keys.count - indexPath.row - 1)
+            data.removeAtIndex(data.count - indexPath.row - 1)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+        else if editingStyle == .Delete {
+            //shows an alert window if not admin
+            let alertView = UIAlertView();
+            alertView.addButtonWithTitle("Ok");
+            alertView.title = "Invalid Action";
+            alertView.message = "You are Not an Admin";
+            alertView.show();
+        }
+    }
+    
     
 }
 

@@ -20,6 +20,9 @@ class MOIRecommendationController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //refresh
+        self.refreshControl?.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -97,5 +100,27 @@ class MOIRecommendationController: UITableViewController {
         }
     }
     
+    
+    //called when table is pulled down
+    func refresh(sender:AnyObject) {
+        data.removeAll()
+        
+        let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/lastMoi")
+        ref.queryOrderedByChild("Date").observeEventType(.ChildAdded, withBlock: { snapshot in
+            var date = Reachability.parseOptional(String(snapshot.value["Date"]))
+            
+            //converts epoch time to date if necessary
+            if(!date.containsString(".")) {
+                date = Reachability.epochtoDate(Double(date)!)
+            }
+            
+            let partner = snapshot.key
+            print("\(snapshot.key) - \(date)")
+            self.self.data.append("\(partner)")
+            self.self.keys.append(snapshot.key);
+            self.recTableView.reloadData()
+            self.refreshControl?.endRefreshing()
+        })
+    }
 }
 

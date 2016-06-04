@@ -30,13 +30,15 @@ class DisplayPrayerController: UITableViewController {
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        //self.navigationItem.rightBarButtonItem = self.editButtonItem()
+
         self.title = "All Prayer Requests"
         data.removeAtIndex(0)
         filtered.removeAtIndex(0)
         keys.removeAtIndex(0)
         Reachability.internetCheck()
         
+        //refresh
+        self.refreshControl?.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         //if user is logged in
         if((FBSDKAccessToken.currentAccessToken()) != nil){
@@ -178,6 +180,48 @@ class DisplayPrayerController: UITableViewController {
                 alertView.title = "Invalid Access";
                 alertView.message = "Please Toggle to Delete Prayer";
                 alertView.show();
+        }
+    }
+    
+    
+    //called when table is pulled down
+    func refresh(sender:AnyObject) {
+        
+        print("refresh")
+        
+        data.removeAll()
+        keys.removeAll()
+        filtered.removeAll()
+        
+        if((FBSDKAccessToken.currentAccessToken()) != nil){
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
+                if (error == nil){
+                    self.username = Reachability.parseOptional(String(result["name"]))
+                    let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/prayers")
+                    ref.queryOrderedByChild("date").observeEventType(.ChildAdded, withBlock: { snapshot in
+                        if let prayer = snapshot.value["prayer"] as? String {
+                            var date = Reachability.parseOptional(String(snapshot.value["date"]))
+                            
+                            if(!date.containsString(".")) {
+                                date = Reachability.epochtoDate(Double(date)!)
+                            }
+                            
+                            let name = Reachability.parseOptional(String(snapshot.value["author"]))
+                            print("\(snapshot.key) prayer:  \(prayer)")
+                            self.self.data.append("\(prayer) \r\nby \(name) on \(date)")
+                            self.self.keys.append(snapshot.key)
+                            
+                            //add to filtered if prayer is own prayer
+                            if(name == Reachability.parseOptional(String(result["name"]))) {
+                                self.self.filtered.append("\(prayer) \r\nby \(name) on \(date)")
+                            }
+                            self.prayerTableView.reloadData()
+                        }
+                    })
+                    print(self.data)
+                    self.refreshControl?.endRefreshing()
+                }
+            })
         }
     }
     
