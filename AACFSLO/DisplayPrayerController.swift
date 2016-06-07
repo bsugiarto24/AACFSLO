@@ -86,18 +86,7 @@ class DisplayPrayerController: UITableViewController {
         }
     }
     
- 
-    /*@IBAction func toggle(sender: AnyObject) {
-        useFiltered = !useFiltered
-        
-        if(useFiltered) {
-            self.title = "Personal Prayer Requests"
-        }else{
-            self.title = "All Prayer Requests"
-        }
-        prayerTableView.reloadData()
-    }*/
-    
+
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(useFiltered){

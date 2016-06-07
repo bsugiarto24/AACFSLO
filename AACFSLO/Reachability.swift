@@ -54,20 +54,24 @@ public class Reachability {
     
     //converts epoch to HH:MM
     class func epochtoTime(epoch : Double) ->String {
-        let foo: NSTimeInterval = epoch / 1000
-        let theDate = NSDate(timeIntervalSince1970: foo)
-        let calendar = NSCalendar.currentCalendar()
+        let date = NSDate(timeIntervalSince1970: epoch)
+        let minute = NSCalendar.currentCalendar().component(.Minute, fromDate: date)
+        var hour = NSCalendar.currentCalendar().component(.Hour, fromDate: date)
+        var ampm = "am"
         
-        
-        let components = calendar.components([.Hour , .Minute], fromDate: theDate)
-        let hour =  components.hour
-        let minute = components.minute
-        
-        if(minute < 10){
-            return String(hour) + ":0" + String(minute)
+        if(hour > 12){
+            hour -= 12
+            ampm = "pm"
+        }else if (hour == 0){
+            hour = 12
+        }else if(hour == 12){
+            ampm = "pm"
         }
-        
-        return String(hour) + ":" + String(minute)
+
+        if(minute < 10){
+            return String(hour) + ":0" + String(minute) + ampm
+        }
+        return String(hour) + ":" + String(minute) + ampm
     }
     
     
