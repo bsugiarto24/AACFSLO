@@ -73,6 +73,14 @@ class MOIFinderController: UITableViewController {
         data.removeAtIndex(0)
         Reachability.internetCheck()
         
+        //get user name
+        if((FBSDKAccessToken.currentAccessToken()) != nil){
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
+                if (error == nil){
+                    self.username = String(result["name"])
+                }
+            })
+        }
 
         //get list of people
         let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/MoiNow")

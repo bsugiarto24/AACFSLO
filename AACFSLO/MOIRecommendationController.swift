@@ -92,11 +92,7 @@ class MOIRecommendationController: UITableViewController {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Delete {
             //shows an alert window if not admin
-            let alertView = UIAlertView();
-            alertView.addButtonWithTitle("Ok");
-            alertView.title = "Invalid Action";
-            alertView.message = "You are Not an Admin";
-            alertView.show();
+            Reachability.alertView("Invalid Action", message: "You are Not an Admin")
         }
     }
     

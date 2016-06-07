@@ -66,11 +66,7 @@ class MoiListController: UITableViewController {
             })
         }else {
             //shows an alert window if not logged in
-            let alertView = UIAlertView();
-            alertView.addButtonWithTitle("Ok");
-            alertView.title = "You are not Logged In";
-            alertView.message = "Please Log In";
-            alertView.show();
+            Reachability.alertView("You are not Logged In", message: "Please Log In")
         }
     }
     
@@ -132,11 +128,7 @@ class MoiListController: UITableViewController {
             })
         }else {
             //shows an alert window if not logged in
-            let alertView = UIAlertView();
-            alertView.addButtonWithTitle("Ok");
-            alertView.title = "You are not Logged In";
-            alertView.message = "Please Log In";
-            alertView.show();
+            Reachability.alertView("You are not Logged In", message: "Please Log In")
         }
         self.refreshControl?.endRefreshing()
     }

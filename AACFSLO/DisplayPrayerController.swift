@@ -191,11 +191,7 @@ class DisplayPrayerController: UITableViewController {
         }
         //remove prayer that is not authorized
         else if !useFiltered && editingStyle == .Delete {
-                let alertView = UIAlertView();
-                alertView.addButtonWithTitle("Ok");
-                alertView.title = "Invalid Access";
-                alertView.message = "Please Toggle to Delete Prayer";
-                alertView.show();
+                Reachability.alertView("Invalid Access", message: "Please Toggle to Delete Prayer")
         }
     }
     

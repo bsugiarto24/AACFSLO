@@ -63,6 +63,10 @@ public class Reachability {
         let hour =  components.hour
         let minute = components.minute
         
+        if(minute < 10){
+            return String(hour) + ":0" + String(minute)
+        }
+        
         return String(hour) + ":" + String(minute)
     }
     
