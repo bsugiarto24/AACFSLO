@@ -17,7 +17,8 @@ class MOIFinderController: UITableViewController {
     var username = ""
     var isBusy = true
     var location =  ""
-    var alert = UIAlertController(title: "Enter Location", message: "", preferredStyle: .Alert)
+    var time = 300.0
+    var alert = UIAlertController(title: "Enter Location and Time", message: "Time is in minutes", preferredStyle: .Alert)
 
     
     override func viewDidLoad() {
@@ -37,11 +38,22 @@ class MOIFinderController: UITableViewController {
             textField.placeholder = "Location"
         })
         
+        //Add the text field. You can configure it however you need.
+        alert.addTextFieldWithConfigurationHandler({ (textField) -> Void in
+            textField.text = ""
+            textField.placeholder = "Time"
+            textField.keyboardType = .NumberPad
+        })
+        
         //Grab the value from the text field, and print it when the user clicks OK.
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
             let textField = self.alert.textFields![0] as UITextField
+            let textField2 = self.alert.textFields![1] as UITextField
             print("Text field: \(textField.text)")
             self.location = textField.text!
+            
+            
+            self.time = Double(textField2.text!)! * 60
             self.finishToggle()
         }))
 
@@ -61,23 +73,7 @@ class MOIFinderController: UITableViewController {
         data.removeAtIndex(0)
         Reachability.internetCheck()
         
-        //add user to list
-        if((FBSDKAccessToken.currentAccessToken()) != nil){
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
-                if (error == nil){
-                    let name = Reachability.parseOptional(String(result["name"]))
-                    let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/MoiNow")
-                    let ref2 = ref.childByAppendingPath(name)
-                    let data = ["name": name, "status": "busy"]
-                    self.username = name
-                    ref2.setValue(data)
-                    self.isBusy = true;
-                    self.recTableView.reloadData()
-                }
-            })
-        }
-        
-        
+
         //get list of people
         let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/MoiNow")
         ref.queryOrderedByChild("status").observeEventType(.ChildAdded, withBlock: { snapshot in
@@ -127,6 +123,41 @@ class MOIFinderController: UITableViewController {
     func toggleStatus(){
         print("toggle status")
         
+        
+        //add user to list
+        if((FBSDKAccessToken.currentAccessToken()) != nil){
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
+                if (error == nil){
+                    let name = Reachability.parseOptional(String(result["name"]))
+                    let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/MoiNow")
+                    let ref2 = ref.childByAppendingPath(name)
+                    let data = ["name": name, "status": "busy"]
+                    self.username = name
+                    
+                    //check if user is already there
+                    var hasUser = false
+                    var index = 0
+                    while(index < self.keys.count){
+                        if self.keys[index] == name{
+                            hasUser = true
+                            if(self.data.contains("free")){
+                                self.isBusy = false
+                            }
+                            break
+                        }
+                        index += 1
+                    }
+                    
+                    if(!hasUser){
+                        ref2.setValue(data)
+                        self.isBusy = true;
+                    }
+                    self.recTableView.reloadData()
+                }
+            })
+        }
+
+        
         //if free then ask for location
         if(isBusy){
             self.presentViewController(alert, animated: true, completion: nil)
@@ -155,7 +186,14 @@ class MOIFinderController: UITableViewController {
         var individual = ["name": username]
         var status = "free";
         if(isBusy){
-            individual = ["name": username, "status": "free", "location": location]
+            var timeInterval = NSDate().timeIntervalSince1970
+            timeInterval += self.time * 60
+            let str = Reachability.epochtoTime(timeInterval)
+            let loc2 = location + " until " + str
+            
+            individual = ["name": username, "status": "free", "location": loc2]
+            //set logout timer
+            let logoutTimer = NSTimer.scheduledTimerWithTimeInterval(60 * self.time, target: self, selector: #selector(MOIFinderController.logout as (MOIFinderController) -> () -> ()), userInfo: nil, repeats: true)
         }else{
             individual = ["name": username, "status": "busy"]
             status = "busy"
@@ -209,12 +247,30 @@ class MOIFinderController: UITableViewController {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
         else if editingStyle == .Delete {
-            //shows an alert window if not admin
-            let alertView = UIAlertView();
-            alertView.addButtonWithTitle("Ok");
-            alertView.title = "Invalid Action";
-            alertView.message = "You are Not an Admin";
-            alertView.show();
+            Reachability.alertView("Invalid Action", message: "You are Not an Admin")
+        }
+    }
+    
+    
+    
+    
+    
+    //function when user is busy from time
+    func logout() {
+        //add user to list
+        if((FBSDKAccessToken.currentAccessToken()) != nil){
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
+                if (error == nil){
+                    let name = Reachability.parseOptional(String(result["name"]))
+                    let ref = Firebase(url: "https://crackling-inferno-4721.firebaseio.com/MoiNow")
+                    let ref2 = ref.childByAppendingPath(name)
+                    let data = ["name": name, "status": "busy"]
+                    self.username = name
+                    ref2.setValue(data)
+                    self.isBusy = true;
+                    self.recTableView.reloadData()
+                }
+            })
         }
     }
     

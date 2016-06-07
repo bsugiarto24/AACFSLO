@@ -110,38 +110,24 @@ class PrayerRequestController: UIViewController, UITextViewDelegate{
                     let post1 = ["author": user, "prayer": message,"date": time2]
                     let post1Ref = prayerRef.childByAutoId()
                     
-                    if(message == "") {
+                    if(message == "" || message == "Enter a prayer") {
                         //no message
-                        let alertView = UIAlertView();
-                        alertView.addButtonWithTitle("Ok");
-                        alertView.title = "Invalid Prayer";
-                        alertView.message = "Please Enter a Prayer";
-                        alertView.show();
+                        Reachability.alertView("Invalid Prayer", message: "Please Enter a Prayer")
                     }
-                    else if(message.characters.count > 120){
+                    else if(message.characters.count > 200){
                         //message too long
-                        let alertView = UIAlertView();
-                        alertView.addButtonWithTitle("Ok");
-                        alertView.title = "Invalid Prayer";
-                        alertView.message = "Your Prayer is Too Long";
-                        alertView.show();
+                        Reachability.alertView("Invalid Prayer", message: "Your Prayer is Too Long")
                     }
                     else if !Reachability.isConnectedToNetwork() {
                         //no internet connection
-                        let alertView = UIAlertView();
-                        alertView.addButtonWithTitle("Ok");
-                        alertView.title = "No Internet Connection";
-                        alertView.message = "Please connect to the internet";
-                        alertView.show();
+                        Reachability.alertView("No Internet Connection",
+                            message: "Please connect to the internet")
                     }
                     else {
                         post1Ref.setValue(post1)
                         //successful prayer
-                        let alertView = UIAlertView();
-                        alertView.addButtonWithTitle("Ok");
-                        alertView.title = "Sent Prayer";
-                        alertView.message = "Your Prayer has Been Receieved";
-                        alertView.show();
+                        Reachability.alertView("Sent Prayer",
+                            message: "Your Prayer has Been Receieved")
                         
                         // resets text
                         self.textField.text = ""
@@ -155,39 +141,24 @@ class PrayerRequestController: UIViewController, UITextViewDelegate{
                 "prayer": message,
                 "date": time]
             let post1Ref = prayerRef.childByAutoId()
-            if(message == "") {
+            if(message == "" || message == "Enter a prayer") {
                 //no message
-                let alertView = UIAlertView();
-                alertView.addButtonWithTitle("Ok");
-                alertView.title = "Invalid Prayer";
-                alertView.message = "Please Enter a Prayer";
-                alertView.show();
+                Reachability.alertView("Invalid Prayer", message: "Please Enter a Prayer")
             }
             else if(message.characters.count > 200){
                 //message too long
-                let alertView = UIAlertView();
-                alertView.addButtonWithTitle("Ok");
-                alertView.title = "Invalid Prayer";
-                alertView.message = "Your Prayer is Too Long";
-                alertView.show();
+                Reachability.alertView("Invalid Prayer", message: "Your Prayer is Too Long")
             }
             else if !Reachability.isConnectedToNetwork() {
                 //no internet connection
-                let alertView = UIAlertView();
-                alertView.addButtonWithTitle("Ok");
-                alertView.title = "No Internet Connection";
-                alertView.message = "Please connect to the internet";
-                alertView.show();
+                Reachability.alertView("No Internet Connection",
+                                       message: "Please connect to the internet")
             }
             else {
                 post1Ref.setValue(post1)
-
                 //successful prayer
-                let alertView = UIAlertView();
-                alertView.addButtonWithTitle("Ok");
-                alertView.title = "Sent Prayer";
-                alertView.message = "Your Prayer has Been Receieved";
-                alertView.show();
+                Reachability.alertView("Sent Prayer",
+                    message: "Your Prayer has Been Receieved")
                 
                 // resets text
                 self.textField.text = ""

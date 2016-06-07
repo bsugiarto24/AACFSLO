@@ -58,6 +58,8 @@
 
 
 - (void)applicationWillResignActive:(UIApplication *)application{
+    
+    /*
     if ([FBSDKAccessToken currentAccessToken]) {
         [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields": @"email,name,first_name"}]
          startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
@@ -72,7 +74,7 @@
                  [ref setValue: post2];
              }
          }];
-    }
+    }*/
 }
 
 

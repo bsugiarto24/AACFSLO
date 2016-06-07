@@ -24,11 +24,8 @@ public class Reachability {
     class func internetCheck() {
         //check internet connection
         if !Reachability.isConnectedToNetwork() {
-            let alertView = UIAlertView();
-            alertView.addButtonWithTitle("Ok");
-            alertView.title = "No Internet Connection";
-            alertView.message = "Please connect to the internet";
-            alertView.show();
+            Reachability.alertView("No Internet Connection",
+                                   message: "Please connect to the internet")
         }
     }
     
@@ -54,6 +51,32 @@ public class Reachability {
         
         return String(year) + "." + String(month) + "." + String(day)
     }
+    
+    //converts epoch to HH:MM
+    class func epochtoTime(epoch : Double) ->String {
+        let foo: NSTimeInterval = epoch / 1000
+        let theDate = NSDate(timeIntervalSince1970: foo)
+        let calendar = NSCalendar.currentCalendar()
+        
+        
+        let components = calendar.components([.Hour , .Minute], fromDate: theDate)
+        let hour =  components.hour
+        let minute = components.minute
+        
+        return String(hour) + ":" + String(minute)
+    }
+    
+    
+    //converts epoch to HH:MM
+    class func alertView(title: String, message : String) {
+        //shows an alert window if not admin
+        let alertView = UIAlertView();
+        alertView.addButtonWithTitle("Ok");
+        alertView.title = title;
+        alertView.message = message;
+        alertView.show();
+    }
+    
     
     
 }

@@ -11,7 +11,20 @@ import Firebase
 
 class DisplayPrayerController: UITableViewController {
 
+    @IBAction func toggle(sender: AnyObject) {
+        useFiltered = !useFiltered
+        
+        if(useFiltered) {
+            self.title = "Personal Prayer Requests"
+        }else{
+            self.title = "All Prayer Requests"
+        }
+        prayerTableView.reloadData()
+    }
+    /*@IBOutlet var prayerTableView: UITableView!
+    @IBOutlet weak var menuButton: UIBarButtonItem!*/
     @IBOutlet var prayerTableView: UITableView!
+    
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     var data = ["data"]
@@ -25,6 +38,9 @@ class DisplayPrayerController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //refresh
+        self.refreshControl?.addTarget(self, action: #selector(DisplayPrayerController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -36,9 +52,7 @@ class DisplayPrayerController: UITableViewController {
         filtered.removeAtIndex(0)
         keys.removeAtIndex(0)
         Reachability.internetCheck()
-        
-        //refresh
-        self.refreshControl?.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+    
         
         //if user is logged in
         if((FBSDKAccessToken.currentAccessToken()) != nil){
@@ -73,7 +87,7 @@ class DisplayPrayerController: UITableViewController {
     }
     
  
-    @IBAction func toggle(sender: AnyObject) {
+    /*@IBAction func toggle(sender: AnyObject) {
         useFiltered = !useFiltered
         
         if(useFiltered) {
@@ -82,7 +96,8 @@ class DisplayPrayerController: UITableViewController {
             self.title = "All Prayer Requests"
         }
         prayerTableView.reloadData()
-    }
+    }*/
+    
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(useFiltered){
@@ -102,6 +117,8 @@ class DisplayPrayerController: UITableViewController {
         }
         return cell
     }
+
+    
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if useFiltered && editingStyle == .Delete {
@@ -151,8 +168,7 @@ class DisplayPrayerController: UITableViewController {
                             break
                         }
                         index2+=1
-                    }
-                    
+                    } 
                     break
                 }
                 index+=1
