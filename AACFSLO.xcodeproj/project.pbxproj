@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4206EC681D00174D002BC909 /* MOIFinderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4206EC671D00174D002BC909 /* MOIFinderController.swift */; };
+		428DD90F1D08FC4900C39BBC /* SuggestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428DD90E1D08FC4900C39BBC /* SuggestionController.swift */; };
+		429729E41D614CA70045D88E /* 14002542_10207112268665369_1595937293_o.png in Resources */ = {isa = PBXBuildFile; fileRef = 429729E31D614CA70045D88E /* 14002542_10207112268665369_1595937293_o.png */; };
 		42C9E7721CFF8AEC00F9C1C8 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C9E7711CFF8AEC00F9C1C8 /* Reachability.swift */; };
 		42D0B4EF1CF51F7E006CE86A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B4EE1CF51F7E006CE86A /* main.m */; };
 		42D0B4F21CF51F7E006CE86A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D0B4F11CF51F7E006CE86A /* AppDelegate.m */; };
@@ -65,6 +67,8 @@
 /* Begin PBXFileReference section */
 		4206EC671D00174D002BC909 /* MOIFinderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOIFinderController.swift; sourceTree = "<group>"; };
 		4266E1341CF83656002F6B60 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		428DD90E1D08FC4900C39BBC /* SuggestionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionController.swift; sourceTree = "<group>"; };
+		429729E31D614CA70045D88E /* 14002542_10207112268665369_1595937293_o.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 14002542_10207112268665369_1595937293_o.png; sourceTree = "<group>"; };
 		42C9E7711CFF8AEC00F9C1C8 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		42D0B4EA1CF51F7E006CE86A /* AACFSLO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AACFSLO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D0B4EE1CF51F7E006CE86A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 				42D0B5671CF52E63006CE86A /* Facebook Code */,
 				42D0B4ED1CF51F7E006CE86A /* Supporting Files */,
 				42D0B4F91CF51F7E006CE86A /* Assets.xcassets */,
+				429729E31D614CA70045D88E /* 14002542_10207112268665369_1595937293_o.png */,
 				42D0B5311CF51FAF006CE86A /* Main.storyboard */,
 			);
 			path = AACFSLO;
@@ -240,10 +245,11 @@
 			children = (
 				42D0B5211CF51F9B006CE86A /* AnnouncementsController.swift */,
 				42D0B5221CF51F9B006CE86A /* DisplayPrayerController.swift */,
-				42D0B5241CF51F9B006CE86A /* PrayerRequestController.swift */,
 				42D0B5231CF51F9B006CE86A /* MoiListController.swift */,
-				42F5C31F1CF77F3A006AB694 /* MOIRecommendationController.swift */,
 				4206EC671D00174D002BC909 /* MOIFinderController.swift */,
+				428DD90E1D08FC4900C39BBC /* SuggestionController.swift */,
+				42F5C31F1CF77F3A006AB694 /* MOIRecommendationController.swift */,
+				42D0B5241CF51F9B006CE86A /* PrayerRequestController.swift */,
 				42D0B5251CF51F9B006CE86A /* CheckBox.swift */,
 				42C9E7711CFF8AEC00F9C1C8 /* Reachability.swift */,
 			);
@@ -389,6 +395,7 @@
 			files = (
 				42D0B4FD1CF51F7E006CE86A /* LaunchScreen.storyboard in Resources */,
 				42D0B4FA1CF51F7E006CE86A /* Assets.xcassets in Resources */,
+				429729E41D614CA70045D88E /* 14002542_10207112268665369_1595937293_o.png in Resources */,
 				42D0B5331CF51FAF006CE86A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42D0B5421CF51FBD006CE86A /* SCPickerViewController.m in Sources */,
+				428DD90F1D08FC4900C39BBC /* SuggestionController.swift in Sources */,
 				42D0B5401CF51FBD006CE86A /* SCLoginViewController.m in Sources */,
 				42D0B52A1CF51F9B006CE86A /* CheckBox.swift in Sources */,
 				42D0B5431CF51FBD006CE86A /* SCProfilePictureButton.m in Sources */,

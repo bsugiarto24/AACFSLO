@@ -14,6 +14,7 @@ class MoiListController: UITableViewController {
     @IBOutlet var moiTableView: UITableView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     var data = ["data"]
+    var dataDate = ["data"]
     var keys = ["data"]
     var user = ""
 
@@ -31,6 +32,7 @@ class MoiListController: UITableViewController {
         self.title = "MOI History"
         data.removeAtIndex(0)
         keys.removeAtIndex(0)
+        dataDate.removeAtIndex(0)
         Reachability.internetCheck()
         
         //refresh
@@ -55,12 +57,12 @@ class MoiListController: UITableViewController {
                             }
                             
                             print("\(snapshot.key) prayer this:  \(partner)")
-                            self.self.data.append("\(partner) on \(date)")
+                            self.self.data.append("\(partner)")
+                            self.self.dataDate.append("\(date)")
                             self.self.keys.append(snapshot.key)
                             self.moiTableView.reloadData()
                         }
                     })
-                    print(self.self.data.count)
                     print(self.self.data)
                 }
             })
@@ -78,6 +80,7 @@ class MoiListController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MoiCell", forIndexPath: indexPath)
         cell.textLabel?.text = data[data.count - indexPath.row - 1]
+        cell.detailTextLabel?.text = dataDate[dataDate.count - indexPath.row - 1]
         return cell
     }
     
@@ -92,6 +95,7 @@ class MoiListController: UITableViewController {
             ref3.removeValue()
             keys.removeAtIndex(keys.count - indexPath.row - 1)
             data.removeAtIndex(data.count - indexPath.row - 1)
+            dataDate.removeAtIndex(dataDate.count - indexPath.row - 1)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
@@ -99,6 +103,7 @@ class MoiListController: UITableViewController {
     //called when table is pulled down
     func refresh(sender:AnyObject) {
         data.removeAll()
+        dataDate.removeAll()
         if((FBSDKAccessToken.currentAccessToken()) != nil){
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"]).startWithCompletionHandler({ (connection, result, error) -> Void in
                 if (error == nil){
@@ -117,7 +122,8 @@ class MoiListController: UITableViewController {
                             }
                             
                             print("\(snapshot.key) prayer this:  \(partner)")
-                            self.self.data.append("\(partner) on \(date)")
+                            self.self.data.append("\(partner)")
+                            self.self.dataDate.append("\(date)")
                             self.self.keys.append(snapshot.key)
                             self.moiTableView.reloadData()
                         }

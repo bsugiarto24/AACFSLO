@@ -19,5 +19,191 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AACFSLO/DisplayPrayerController.swift"
+            timestampString = "493516504.528814"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "DisplayPrayerController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AACFSLO.DisplayPrayerController.filtered.getter : Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "AACFSLO"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bsugiarto/Desktop/iOS%20Stuff/AACFSLO/AACFSLO/DisplayPrayerController.swift"
+                  timestampString = "493514713.68582"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "38">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AACFSLO.DisplayPrayerController.filtered.setter : Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "AACFSLO"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bsugiarto/Desktop/iOS%20Stuff/AACFSLO/AACFSLO/DisplayPrayerController.swift"
+                  timestampString = "493514713.685949"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AACFSLO.DisplayPrayerController.init (style : __C.UITableViewStyle) -&gt; AACFSLO.DisplayPrayerController"
+                  moduleName = "AACFSLO"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bsugiarto/Desktop/iOS%20Stuff/AACFSLO/AACFSLO/DisplayPrayerController.swift"
+                  timestampString = "493514713.686046"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "271">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AACFSLO.DisplayPrayerController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; AACFSLO.DisplayPrayerController"
+                  moduleName = "AACFSLO"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bsugiarto/Desktop/iOS%20Stuff/AACFSLO/AACFSLO/DisplayPrayerController.swift"
+                  timestampString = "493514713.686148"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "330">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AACFSLO.DisplayPrayerController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;AACFSLO.DisplayPrayerController&gt;"
+                  moduleName = "AACFSLO"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bsugiarto/Desktop/iOS%20Stuff/AACFSLO/AACFSLO/DisplayPrayerController.swift"
+                  timestampString = "493514713.686239"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "271">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AACFSLO/DisplayPrayerController.swift"
+            timestampString = "493516504.528814"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "DisplayPrayerController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AACFSLO.DisplayPrayerController.datadate.getter : Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "AACFSLO"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bsugiarto/Desktop/iOS%20Stuff/AACFSLO/AACFSLO/DisplayPrayerController.swift"
+                  timestampString = "493514723.046008"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "38">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AACFSLO.DisplayPrayerController.datadate.setter : Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "AACFSLO"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bsugiarto/Desktop/iOS%20Stuff/AACFSLO/AACFSLO/DisplayPrayerController.swift"
+                  timestampString = "493514723.046165"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AACFSLO.DisplayPrayerController.init (style : __C.UITableViewStyle) -&gt; AACFSLO.DisplayPrayerController"
+                  moduleName = "AACFSLO"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bsugiarto/Desktop/iOS%20Stuff/AACFSLO/AACFSLO/DisplayPrayerController.swift"
+                  timestampString = "493514723.046267"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "291">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AACFSLO.DisplayPrayerController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; AACFSLO.DisplayPrayerController"
+                  moduleName = "AACFSLO"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bsugiarto/Desktop/iOS%20Stuff/AACFSLO/AACFSLO/DisplayPrayerController.swift"
+                  timestampString = "493514723.046359"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "350">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AACFSLO.DisplayPrayerController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;AACFSLO.DisplayPrayerController&gt;"
+                  moduleName = "AACFSLO"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bsugiarto/Desktop/iOS%20Stuff/AACFSLO/AACFSLO/DisplayPrayerController.swift"
+                  timestampString = "493514723.046451"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "291">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

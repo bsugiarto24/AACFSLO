@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController autoresizesArchivedViewToFullSize="NO" id="01J-lp-oVM" sceneMemberID="viewController">
-                    <imageView key="view" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" id="cg7-3W-vqb">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZVY-r2-fXO"/>
+                        <viewControllerLayoutGuide type="bottom" id="PXd-T8-bKt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CZr-24-WLA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.90000000000000002"/>
-                    </imageView>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="30" placeholderIntrinsicHeight="30" image="14002542_10207112268665369_1595937293_o" translatesAutoresizingMaskIntoConstraints="NO" id="pzN-Hz-6Tz">
+                                <rect key="frame" x="79" y="-25" width="161" height="530"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="pzN-Hz-6Tz" firstAttribute="centerX" secondItem="CZr-24-WLA" secondAttribute="centerX" constant="0.5" id="FTv-Uw-hlJ"/>
+                            <constraint firstItem="pzN-Hz-6Tz" firstAttribute="top" secondItem="ZVY-r2-fXO" secondAttribute="bottom" constant="-45" id="QRw-jm-TIZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pzN-Hz-6Tz" secondAttribute="trailing" constant="200" id="QiU-d2-Wku"/>
+                            <constraint firstItem="pzN-Hz-6Tz" firstAttribute="centerY" secondItem="CZr-24-WLA" secondAttribute="centerY" id="T2C-79-FsD"/>
+                            <constraint firstItem="pzN-Hz-6Tz" firstAttribute="leading" secondItem="CZr-24-WLA" secondAttribute="leadingMargin" constant="60" id="b0R-ie-HMI"/>
+                            <constraint firstItem="PXd-T8-bKt" firstAttribute="top" secondItem="pzN-Hz-6Tz" secondAttribute="bottom" id="gUQ-55-AZA"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="QiU-d2-Wku"/>
+                                <exclude reference="gUQ-55-AZA"/>
+                            </mask>
+                        </variation>
+                    </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -23,6 +49,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="splash" width="2048" height="2048"/>
+        <image name="14002542_10207112268665369_1595937293_o" width="1075" height="1131"/>
     </resources>
 </document>
